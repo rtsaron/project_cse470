@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Complaints List</title>
+  </head>
+  <body>
+    <h1>Complaints List</h1>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Severity</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <% complaints.forEach(complaint => { %>
+      <tr>
+        <td><%= complaint.description %></td>
+        <td><%= complaint.severity %></td>
+        <td><%= complaint.status %></td>
+        <td>
+          <% if (complaint.status === 'open') { %>
+          <form method="post" action="/complaints/<%= complaint._id %>/close">
+            <button type="submit">Close</button>
+          </form>
+          <% } else { %>
+          Closed
+          <% } %>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
+
